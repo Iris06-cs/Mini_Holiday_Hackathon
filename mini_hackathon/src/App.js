@@ -34,7 +34,7 @@ function App() {
             variant="h2"
             component="h1"
             align="center"
-            sx={{ fontWeight: "bold", color: "#4682B4" }}
+            sx={{ fontWeight: "bold", color: "#4682B4", marginTop: "3%" }}
           >
             Christmas Countdown!
           </Typography>
