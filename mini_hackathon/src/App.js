@@ -7,6 +7,7 @@ import "@fontsource/roboto/700.css";
 import { Typography, CssBaseline } from "@mui/material";
 import { Container } from "@mui/material";
 import santa from "./images/santa.png";
+import reindeer from "./images/reindeer-santa.png";
 function App() {
   return (
     <>
@@ -21,9 +22,10 @@ function App() {
             justifyContent: "space-around",
           }}
         >
+          <img src={reindeer} alt="reindeer" id="reindeer-img" />
           <img src={santa} alt="santa" id="santa-img" />
         </Container>
-        <Container sx={{ marginRight: "0" }}>
+        <Container sx={{ marginRight: "2%" }}>
           <Typography
             variant="h2"
             component="h1"

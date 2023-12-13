@@ -19,6 +19,22 @@ main {
   }
 }
 #santa-img {
+  margin-top: 20%;
+  margin-left: 10%;
   width: 400px;
   height: 600px;
+}
+@keyframes flyDiagonal {
+  from {
+    transform: translate(10%, 100%);
+  }
+  to {
+    transform: translate(100%, 0);
+  }
+}
+
+#reindeer-img {
+  position: fixed;
+  animation: flyDiagonal 10s linear infinite;
+  opacity: 0.7;
 }

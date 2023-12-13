@@ -29,7 +29,7 @@ const CalendarCard = ({ dayImg, imgIdx, onClick }) => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            color: "white", // Change color as needed
+            color: "white",
             backgroundColor: "rgba(0,0,0,0.3)",
             fontWeight: "bold",
           }}

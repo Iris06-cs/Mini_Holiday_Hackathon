@@ -1,0 +1,21 @@
+.gift-card-stack {
+  position: relative;
+  height: 200px;
+}
+
+.gift-card {
+  width: 220px;
+  position: fixed;
+  top: -20px;
+  left: 50px;
+  margin: 40px;
+}
+
+.gift-card img {
+  width: 200px;
+  height: auto;
+}
+.gift-card:nth-child(n + 2) {
+  top: 20px;
+  left: 10px;
+}

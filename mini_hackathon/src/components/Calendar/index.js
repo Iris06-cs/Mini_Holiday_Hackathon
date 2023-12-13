@@ -45,7 +45,7 @@ const Calendar = () => {
     imageList.map((img) => ({ opened: false, image: img }))
   );
   const [giftCardsCount, setGiftCardsCount] = useState(0);
-
+  const [isLastDay, setIsLastDay] = useState(false);
   useEffect(() => {
     const isCompleteSetShown = () => {
       return shownImages.size === 5;
@@ -57,22 +57,28 @@ const Calendar = () => {
   }, [shownImages]);
 
   const handleMagicTime = (idx) => {
-    setTimeout(() => {
-      setSelectedImage(null);
-      // After animation turning
-      const randomIndex = Math.floor(Math.random() * modalImages.length);
-      setSelectedImage(modalImages[randomIndex]);
-      const newDayStatus = [...dayStatus];
-      newDayStatus[idx] = { opened: true, image: modalImages[randomIndex] };
-      setDayStatus(newDayStatus);
+    setSelectedImage(questionMark);
+    if (idx === dayStatus.length - 1) {
+      setIsLastDay(true);
+      setOpenModal(true);
+    } else {
+      setTimeout(() => {
+        setSelectedImage(null);
+        // After animation turning
+        const randomIndex = Math.floor(Math.random() * modalImages.length);
+        setSelectedImage(modalImages[randomIndex]);
+        const newDayStatus = [...dayStatus];
+        newDayStatus[idx] = { opened: true, image: modalImages[randomIndex] };
+        setDayStatus(newDayStatus);
 
-      // Update shown images
-      setShownImages((prevShownImages) => {
-        const updatedSet = new Set(prevShownImages);
-        updatedSet.add(randomIndex);
-        return updatedSet;
-      });
-    }, 1500);
+        // Update shown images
+        setShownImages((prevShownImages) => {
+          const updatedSet = new Set(prevShownImages);
+          updatedSet.add(randomIndex);
+          return updatedSet;
+        });
+      }, 1500);
+    }
   };
   const handleOpen = (idx) => {
     if (!dayStatus[idx].opened) {
@@ -83,6 +89,7 @@ const Calendar = () => {
   const handleClose = () => {
     setOpenModal(false);
     setSelectedImage(questionMark);
+    setIsLastDay(false);
   };
 
   return (
@@ -130,21 +137,32 @@ const Calendar = () => {
               boxShadow: "none",
             }}
           >
-            {selectedImage && (
-              <img
-                src={selectedImage}
-                alt="Selected"
-                style={{
-                  maxWidth: "200px",
-                  maxHeight: "200px",
-                }}
-              />
+            {isLastDay ? (
+              <Typography
+                variant="h4"
+                component="h4"
+                align="center"
+                sx={{ color: "#F8B229", p: "0", margin: "0" }}
+              >
+                Merry Christmas!
+              </Typography>
+            ) : (
+              selectedImage && (
+                <img
+                  src={selectedImage}
+                  alt="Selected"
+                  style={{
+                    maxWidth: "200px",
+                    maxHeight: "200px",
+                  }}
+                />
+              )
             )}
           </Card>
           <Typography sx={{ color: "#F8B229" }}>Magic Time</Typography>
         </div>
       </Modal>
-      <Collection giftCardsCount={giftCardsCount} />
+      {giftCardsCount > 0 && <Collection giftCardsCount={giftCardsCount} />}
     </div>
   );
 };
