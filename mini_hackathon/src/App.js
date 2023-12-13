@@ -11,16 +11,18 @@ function App() {
     <>
       <CssBaseline />
       <main>
-        <Container>
+        <Container sx={{ marginRight: "0" }}>
           <Typography
-            variant="h1"
+            variant="h2"
+            component="h1"
             align="center"
             style={{ fontWeight: "bold", color: "#4682B4" }}
           >
             Christmas Countdown!
           </Typography>
           <Typography
-            variant="h4"
+            variant="h5"
+            component="h4"
             align="center"
             style={{
               marginTop: "20px",
