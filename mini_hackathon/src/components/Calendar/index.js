@@ -1,13 +1,4 @@
-import {
-  Typography,
-  Box,
-  Button,
-  Card,
-  CardContent,
-  Container,
-  Grid,
-  Modal,
-} from "@mui/material";
+import { Typography, Card, Container, Grid, Modal } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useEffect, useState } from "react";
 

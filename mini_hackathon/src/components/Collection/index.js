@@ -1,4 +1,4 @@
-import { Container, Grid, Card, Typography } from "@mui/material";
+import { Container, Card, Typography } from "@mui/material";
 import giftCard from "../../images/gift.png";
 import "./Collection.css";
 

@@ -1,5 +1,4 @@
 import Calendar from "./components/Calendar";
-import Collection from "./components/Collection";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
