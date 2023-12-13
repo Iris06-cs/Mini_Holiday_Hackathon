@@ -5,3 +5,7 @@
 ![Alt text](image.png)
 
 ## Let's Code!
+
+## My Christmas Reward Calendar
+
+![Alt text](project.GIF)
