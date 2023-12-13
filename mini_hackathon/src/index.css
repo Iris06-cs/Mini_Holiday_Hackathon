@@ -11,13 +11,14 @@ main {
   background-image: url("./images/background_1920.png");
   background-position: center;
   background-size: cover;
+  display: flex;
   height: 100vh;
   width: 100vw;
   @media screen and (max-width: 640px) {
     background-image: url("./images/background_640.png");
-    background-position: center;
-    background-size: cover;
-    height: 100vh;
-    width: 100vw;
   }
+}
+#santa-img {
+  width: 400px;
+  height: 600px;
 }

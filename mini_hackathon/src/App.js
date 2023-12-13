@@ -6,17 +6,29 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import { Typography, CssBaseline } from "@mui/material";
 import { Container } from "@mui/material";
+import santa from "./images/santa.png";
 function App() {
   return (
     <>
       <CssBaseline />
       <main>
+        <Container
+          sx={{
+            width: "25%",
+            margin: "0",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-around",
+          }}
+        >
+          <img src={santa} alt="santa" id="santa-img" />
+        </Container>
         <Container sx={{ marginRight: "0" }}>
           <Typography
             variant="h2"
             component="h1"
             align="center"
-            style={{ fontWeight: "bold", color: "#4682B4" }}
+            sx={{ fontWeight: "bold", color: "#4682B4" }}
           >
             Christmas Countdown!
           </Typography>
@@ -27,15 +39,15 @@ function App() {
             style={{
               marginTop: "20px",
               marginBottom: "20px",
+              color: "#4682B4",
             }}
           >
             Check-in everyday to collect a Xmas item. Gather all 5 different
             items and unlock a special surprise prize!! Don't miss a day of
             holiday cheer!
           </Typography>
+          <Calendar />
         </Container>
-        <Calendar />
-        <Collection />
       </main>
     </>
   );
