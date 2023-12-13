@@ -12,7 +12,12 @@ function App() {
   return (
     <>
       <CssBaseline />
+
       <main>
+        <audio controls loop style={{ position: "fixed", bottom: "0" }}>
+          <source src="/music/jingle-bells.mp3" type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
         <Container
           sx={{
             width: "25%",
