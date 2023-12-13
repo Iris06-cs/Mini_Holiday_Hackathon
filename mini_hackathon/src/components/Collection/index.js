@@ -1,9 +1,10 @@
 import { Container, Grid, Card, Typography } from "@mui/material";
 import giftCard from "../../images/gift.png";
 import "./Collection.css";
+
 const Collection = ({ giftCardsCount }) => {
   return (
-    <Container>
+    <Container sx={{ p: "0", margin: "0" }}>
       <div className="gift-card-stack">
         {[...Array(giftCardsCount)].map((_, index) => (
           <Card
