@@ -29,7 +29,6 @@ const theme = createTheme({
 });
 const Calendar = () => {
   const [openModal, setOpenModal] = useState(false);
-  //   const [shownImages, setShownImages] = useState(new Set());
   const [openedDays, setOpenedDays] = useState({});
 
   const [selectedImage, setSelectedImage] = useState(questionMark);
@@ -39,24 +38,6 @@ const Calendar = () => {
   const [giftCardsCount, setGiftCardsCount] = useState(0);
   const [isLastDay, setIsLastDay] = useState(false);
 
-  //   useEffect(() => {
-  //     const completeSetImages = !openedDays ? [] : Object.values(openedDays);
-  //     const isCompleteSetShown = () => {
-  //       if (!completeSetImages.length || completeSetImages.length < 5)
-  //         return false;
-  //       else return true;
-  //     };
-
-  //     if (isCompleteSetShown()) {
-  //       setGiftCardsCount((prev) => prev + 1);
-  //       //   setShownImages(new Set());
-  //       setOpenedDays((prev) => {
-  //         const newOpenedDays = { ...prev };
-  //         for (let key in newOpenedDays) newOpenedDays[key] -= 1;
-  //         return newOpenedDays;
-  //       });
-  //     }
-  //   }, [openedDays]);
   useEffect(() => {
     const totalUniqueImagesOpened = Object.keys(openedDays).length;
     const allImagesOpenedAtLeastOnce = totalUniqueImagesOpened >= 5;
@@ -78,7 +59,6 @@ const Calendar = () => {
     }
   }, [openedDays]);
 
-  console.log(giftCardsCount, "line59", openedDays);
   const handleMagicTime = (idx) => {
     setSelectedImage(questionMark);
     if (idx === dayStatus.length - 1) {
@@ -93,16 +73,9 @@ const Calendar = () => {
         const newDayStatus = [...dayStatus];
         newDayStatus[idx] = { opened: true, image: modalImages[randomIndex] };
         setDayStatus(newDayStatus);
-
-        // Update shown images
-        // setShownImages((prevShownImages) => {
-        //   const updatedSet = new Set(prevShownImages);
-        //   updatedSet.add(randomIndex);
-
-        //   return updatedSet;
-        // });
+        // update display image after day is open
         setOpenedDays((prev) => {
-          const newOpenedDays = { ...prev }; // Create a new object
+          const newOpenedDays = { ...prev };
 
           if (!newOpenedDays[randomIndex]) {
             newOpenedDays[randomIndex] = 0;
