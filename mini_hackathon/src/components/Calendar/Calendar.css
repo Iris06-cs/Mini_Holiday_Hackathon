@@ -9,3 +9,19 @@
     transform: rotateY(720deg);
   }
 }
+#opened_img {
+  max-width: 200px;
+  max-height: 200px;
+}
+
+.modal_container {
+  width: 400px;
+  height: 400px;
+  margin: auto;
+  margin-top: 15%;
+  background-color: #b01b2e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}

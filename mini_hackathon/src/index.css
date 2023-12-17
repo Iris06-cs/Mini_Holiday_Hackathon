@@ -50,3 +50,6 @@ main {
   animation: flyDiagonal 10s linear infinite;
   opacity: 0.7;
 }
+#audio_player {
+  opacity: 0.6;
+}

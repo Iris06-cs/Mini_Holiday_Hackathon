@@ -1,29 +1,24 @@
+.gift-card-container {
+  position: fixed;
+  top: -20px;
+  left: 50px;
+}
 .gift-card-stack {
-  position: relative;
-  height: 0;
+  display: flex;
+  max-width: 35vw;
+  margin-top: 50px;
 }
 
 .gift-card {
   width: 220px;
-  position: fixed;
-  top: -20px;
-  left: 50px;
-  margin: 40px;
+  z-index: 1;
+}
+.gift-card:not(:first-child) {
+  top: 60px;
+  margin-left: calc(120px * -1);
 }
 
 .gift-card img {
   width: 200px;
   height: auto;
 }
-.gift-card:nth-child(n + 2) {
-  top: 20px;
-  left: 10px;
-}
-/* .collection-container {
-  margin: 0;
-  padding: 0;
-}
-.collection-container.with-cards {
-  margin: 20px;
-  padding: 20px;
-} */

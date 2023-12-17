@@ -29,7 +29,8 @@ const theme = createTheme({
 });
 const Calendar = () => {
   const [openModal, setOpenModal] = useState(false);
-  const [shownImages, setShownImages] = useState(new Set());
+  //   const [shownImages, setShownImages] = useState(new Set());
+  const [openedDays, setOpenedDays] = useState({});
 
   const [selectedImage, setSelectedImage] = useState(questionMark);
   const [dayStatus, setDayStatus] = useState(
@@ -37,16 +38,47 @@ const Calendar = () => {
   );
   const [giftCardsCount, setGiftCardsCount] = useState(0);
   const [isLastDay, setIsLastDay] = useState(false);
-  useEffect(() => {
-    const isCompleteSetShown = () => {
-      return shownImages.size === 5;
-    };
-    if (isCompleteSetShown()) {
-      setGiftCardsCount((prev) => prev + 1);
-      setShownImages(new Set());
-    }
-  }, [shownImages]);
 
+  //   useEffect(() => {
+  //     const completeSetImages = !openedDays ? [] : Object.values(openedDays);
+  //     const isCompleteSetShown = () => {
+  //       if (!completeSetImages.length || completeSetImages.length < 5)
+  //         return false;
+  //       else return true;
+  //     };
+
+  //     if (isCompleteSetShown()) {
+  //       setGiftCardsCount((prev) => prev + 1);
+  //       //   setShownImages(new Set());
+  //       setOpenedDays((prev) => {
+  //         const newOpenedDays = { ...prev };
+  //         for (let key in newOpenedDays) newOpenedDays[key] -= 1;
+  //         return newOpenedDays;
+  //       });
+  //     }
+  //   }, [openedDays]);
+  useEffect(() => {
+    const totalUniqueImagesOpened = Object.keys(openedDays).length;
+    const allImagesOpenedAtLeastOnce = totalUniqueImagesOpened >= 5;
+    const shouldAwardGiftCard =
+      allImagesOpenedAtLeastOnce &&
+      Object.values(openedDays).every((count) => count > 0);
+
+    if (shouldAwardGiftCard) {
+      setGiftCardsCount((prev) => prev + 1);
+
+      // Reset or decrement the count in openedDays
+      setOpenedDays((prev) => {
+        const newOpenedDays = { ...prev };
+        for (let key in newOpenedDays) {
+          newOpenedDays[key] = Math.max(newOpenedDays[key] - 1, 0);
+        }
+        return newOpenedDays;
+      });
+    }
+  }, [openedDays]);
+
+  console.log(giftCardsCount, "line59", openedDays);
   const handleMagicTime = (idx) => {
     setSelectedImage(questionMark);
     if (idx === dayStatus.length - 1) {
@@ -63,10 +95,21 @@ const Calendar = () => {
         setDayStatus(newDayStatus);
 
         // Update shown images
-        setShownImages((prevShownImages) => {
-          const updatedSet = new Set(prevShownImages);
-          updatedSet.add(randomIndex);
-          return updatedSet;
+        // setShownImages((prevShownImages) => {
+        //   const updatedSet = new Set(prevShownImages);
+        //   updatedSet.add(randomIndex);
+
+        //   return updatedSet;
+        // });
+        setOpenedDays((prev) => {
+          const newOpenedDays = { ...prev }; // Create a new object
+
+          if (!newOpenedDays[randomIndex]) {
+            newOpenedDays[randomIndex] = 0;
+          }
+          newOpenedDays[randomIndex]++;
+
+          return newOpenedDays;
         });
       }, 1500);
     }
@@ -91,7 +134,6 @@ const Calendar = () => {
             container
             spacing={{ xs: 1, sm: 1, md: 1 }}
             columns={{ xs: 1, sm: 1, md: 7 }}
-            justify="space-between"
           >
             {dayStatus.map((day, idx) => (
               <CalendarCard
@@ -106,21 +148,9 @@ const Calendar = () => {
         </Container>
       </ThemeProvider>
       <Modal open={openModal} onClose={handleClose}>
-        <div
-          style={{
-            width: "400px",
-            height: "400px",
-            margin: "auto",
-            marginTop: "15%",
-            backgroundColor: "#b01b2e",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
-          }}
-        >
+        <div className="modal_container">
           <Card
-            style={{
+            sx={{
               animation: "flip 1.5s linear",
               maxWidth: "200px",
               maxHeight: "200px",
@@ -139,14 +169,7 @@ const Calendar = () => {
               </Typography>
             ) : (
               selectedImage && (
-                <img
-                  src={selectedImage}
-                  alt="Selected"
-                  style={{
-                    maxWidth: "200px",
-                    maxHeight: "200px",
-                  }}
-                />
+                <img src={selectedImage} id="opened_img" alt="Selected" />
               )
             )}
           </Card>

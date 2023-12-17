@@ -24,7 +24,7 @@ function App() {
         >
           <img src={reindeer} alt="reindeer" id="reindeer-img" />
           <img src={santa} alt="santa" id="santa-img" />
-          <audio controls loop style={{ opacity: "0.6" }}>
+          <audio controls loop id="audio_player">
             <source src="/music/jingle-bells.mp3" type="audio/mpeg" />
             Your browser does not support the audio element.
           </audio>
