@@ -17,6 +17,7 @@
 - **Material UI**
 - **HTML**
 - **CSS**
+- **Render**
 
 ## :sparkles: Features :sparkles:
 
@@ -31,5 +32,7 @@ Users are able to open daily calender to collect random generated Christmas symb
   - npm install
 - Start the application:
   - npm start
+
+**[Live Link](https://hackathon-mini-holiday-advent-calendar.onrender.com/)**
 
 ![Alt text](project.GIF)
